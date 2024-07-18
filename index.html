@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shahid Anwar | Portfolio</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #444;
+            background: linear-gradient(to bottom right, #ffecd2, #fcb69f);
+            transition: background 0.5s, color 0.5s;
+        }
+
+        header {
+            background: #4a90e2;
+            color: #fff;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+            transition: background 0.5s;
+            animation: slideDown 1s ease-in-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        nav ul {
+            list-style: none;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 1rem;
+        }
+
+        nav ul li a, nav ul li button {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            background: #57b5e3;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li button:hover {
+            background: #ff647f;
+            transform: scale(1.1);
+        }
+
+        section {
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .resume-section {
+            text-align: left;
+            padding: 1rem;
+        }
+
+        .resume-section h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            color: #4a90e2;
+        }
+
+        .resume-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: 5px;
+            background: #fff;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .resume-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background: #4a90e2;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            transition: background 0.5s;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        form label, form input, form textarea, form button {
+            width: 80%;
+            max-width: 400px;
+        }
+
+        form input, form textarea {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s, border 0.3s;
+        }
+
+        form input:focus, form textarea:focus {
+            border-color: #4a90e2;
+        }
+
+        form button {
+            padding: 0.5rem 1rem;
+            background-color: #4a90e2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        form button:hover {
+            background-color: #ff647f;
+            transform: scale(1.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.5s;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .close-button {
+            float: right;
+            font-size: 24px;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close-button:hover {
+            color: #000;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        body.dark-theme {
+            background: linear-gradient(to bottom right, #232526, #414345);
+            color: #eee;
+        }
+
+        body.dark-theme header, body.dark-theme footer {
+            background-color: #1a1a1a;
+        }
+
+        body.dark-theme nav ul li a, body.dark-theme nav ul li button {
+            background: #333;
+            color: #ddd;
+        }
+
+        body.dark-theme nav ul li a:hover, body.dark-theme nav ul li button:hover {
+            background: #555;
+        }
+
+        body.dark-theme section {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        body.dark-theme .resume-item {
+            background: #444;
+        }
+
+        body.dark-theme form input, body.dark-theme form textarea {
+            background: #333;
+            color: #ddd;
+        }
+
+        body.dark-theme form button {
+            background-color: #555;
+        }
+
+        body.dark-theme form button:hover {
+            background-color: #777;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            header {
+                padding: 0.5rem 0;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 0.5rem 0;
+            }
+
+            section {
+                margin: 1rem 0;
+                padding: 1rem;
+            }
+
+            .resume-section {
+                padding: 0.5rem;
+            }
+
+            .resume-item {
+                margin-bottom: 1rem;
+                padding: 0.5rem;
+            }
+
+            form label, form input, form textarea, form button {
+                width: 90%;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul li a, nav ul li button {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            section {
+                padding: 0.5rem;
+                margin: 0.5rem 0;
+            }
+
+            form label, form input, form textarea, form button {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .modal-content {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button id="theme-toggle">Toggle Theme</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h1>Welcome to My Portfolio</h1>
+        <p>Preparing for a Dynamic Career in Information Technology</p>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Hi, I'm Shahid Anwar, a passionate developer with a degree in Information Technology from Technocrats Institute of Technology. I specialize in web development and enjoy creating interactive and dynamic web applications.</p>
+    </section>
+
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-description"></p>
+        </div>
+    </div>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <input type="text" id="project-search" placeholder="Search Projects...">
+        <div class="project" data-title="Project A" data-description="Detailed description of Project A">
+            <h3>Project A</h3>
+            <button class="details-button">View Details</button>
+        </div>
+        <div class="project" data-title="Project B" data-description="Detailed description of Project B">
+            <h3>Project B</h3>
+            <button class="details-button">View Details</button>
+        </div>
+        <!-- More projects here -->
+    </section>
+
+    <section id="resume">
+        <h2>Resume</h2>
+        <div class="resume-section">
+            <!-- <div class="resume-item">
+                <h3>Experience</h3>
+                <ul>
+                    <li><strong>Job Title</strong> at <em>Company</em> (Dates)
+                        <ul>
+                            <li>Responsibility or achievement</li>
+                            <li>Responsibility or achievement</li>
+                        </ul>
+                    </li>
+                    <!-- More job experiences --
+                </ul>
+            </div> -->
+            <div class="resume-item">
+                <h3>Education</h3>
+                <ul>
+                    <li><strong>Degree</strong> in <em>BTech Information Technology</em> from <em>Technocrats Institute of Technology</em> (2021-2015)
+                        <ul>
+                            <li>Relevant coursework or achievements</li>
+                            <!-- More coursework or achievements -->
+                        </ul>
+                    </li>
+                    <!-- More educational details -->
+                </ul>
+            </div>
+            <div class="resume-item">
+                <h3>Skills</h3>
+                <ul>
+                    <li>Technical skills <br> Languages : C++, Java
+                    </li>
+                    <li>Frontend <br> TailwindCSS, HTML, Bootstrap</li>
+                    <li>Clouds & Databases <br> MongoDB, SQL</li>
+                    <li>Developer Tools <br> VS Code, GitHub, Android Studio</li>
+                    <!-- More skills -->
+                </ul>
+            </div>
+            <div class="resume-item">
+                <h3>Certifications</h3>
+                <ul>
+                    <li><a href="https://www.coursera.org/account/accomplishments/verify/92VLA9DQG8ZP"target="_blank">Google AI Essentials</a> </li>
+                    <li><a href="https://www.coursera.org/account/accomplishments/verify/LA4TYJRBA9BH"target="_blank">Google Cybersecurity Professional Certificate</a></li>
+                    <!-- More certifications -->
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <form id="contact-form" action="mailto:sahidanwar961@gmail.com" method="post" enctype="text/plain">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Shahid Anwar</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/shahidanwarz" target="_blank"><img src="https://img.icons8.com/?size=100&id=0UCA1XL1Zy2C&format=png&color=000000" alt="Facebook"></a>
+                <a href="https://www.instagram.com/shahidanwar.01?igsh=MWo2Nng5N2ZhM3Z0ZA==" target="_blank"><img src="https://img.icons8.com/?size=100&id=muT7F6pBDDQx&format=png&color=000000" alt="Instagram"></a>
+                <a href="https://x.com/ShahidAnwar01?t=oo0XxYEasUSJZbf7Ss2KUg&s=08" target="_blank"><img src="https://img.icons8.com/?size=100&id=tP47jGH2NoP3&format=png&color=000000" alt="Twitter"></a>
+                <a href="https://www.linkedin.com/in/shahid-anwar-873837246/" target="_blank"><img src="https://img.icons8.com/?size=100&id=91AZsA4BDGzd&format=png&color=000000" alt="LinkedIn"></a>
+                <a href="https://github.com/shahidanwar2" target="_blank"><img src="https://img.icons8.com/?size=100&id=wmRK8s3HIS45&format=png&color=000000" alt="GitHub"></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Toggle Theme
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+
+        // Form Validation
+        const form = document.getElementById('contact-form');
+        form.addEventListener('submit', function (e) {
+            if (!form.checkValidity()) {
+                e.preventDefault();
+                alert('Please fill out all fields correctly.');
+            }
+        });
+
+        // Project Filter/Search
+        const searchInput = document.getElementById('project-search');
+        searchInput.addEventListener('input', function () {
+            const filter = searchInput.value.toLowerCase();
+            const projects = document.querySelectorAll('.project');
+            projects.forEach(project => {
+                const title = project.getAttribute('data-title').toLowerCase();
+                if (title.includes(filter)) {
+                    project.style.display = 'block';
+                } else {
+                    project.style.display = 'none';
+                }
+            });
+        });
+
+        // Modal for Project Details
+        const modal = document.getElementById('project-modal');
+        const closeButton = document.querySelector('.close-button');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+
+        document.querySelectorAll('.details-button').forEach(button => {
+            button.addEventListener('click', function () {
+                const project = this.closest('.project');
+                modalTitle.textContent = project.getAttribute('data-title');
+                modalDescription.textContent = project.getAttribute('data-description');
+                modal.style.display = 'block';
+            });
+        });
+
+        closeButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
